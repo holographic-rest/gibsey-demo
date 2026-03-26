@@ -1,0 +1,408 @@
+{
+  "version": "1.0.0",
+  "generated": "2026-03-26",
+  "total_chunks": 41,
+  "chunks": [
+    {
+      "id": "AA_001",
+      "family": "AA",
+      "pages": "1-3",
+      "tier": 1,
+      "tags": ["AL", "MO"],
+      "source_file": "AA.txt",
+      "description": "Found text, Scheherazade, City of Brass automaton"
+    },
+    {
+      "id": "AA_002",
+      "family": "AA",
+      "pages": "4",
+      "tier": 2,
+      "tags": ["SP"],
+      "source_file": "AA.txt",
+      "description": "Disney/parody disclaimer"
+    },
+    {
+      "id": "AA_003",
+      "family": "AA",
+      "pages": "5",
+      "tier": 3,
+      "tags": ["AL", "IC"],
+      "source_file": "AA.txt",
+      "description": "Author suspects list"
+    },
+    {
+      "id": "AA_004",
+      "family": "AA",
+      "pages": "6-7",
+      "tier": 2,
+      "tags": ["SP", "AL"],
+      "source_file": "AA.txt",
+      "description": "Liability warning, damages disclaimer"
+    },
+    {
+      "id": "AA_005",
+      "family": "AA",
+      "pages": "8",
+      "tier": 3,
+      "tags": ["AL"],
+      "source_file": "AA.txt",
+      "description": "Fiction disclaimer, final warning"
+    },
+    {
+      "id": "LF_001",
+      "family": "LF",
+      "pages": "9-10",
+      "tier": 1,
+      "tags": ["CR_TAG"],
+      "source_file": "LF.txt",
+      "description": "London Fox introduction, Bell Lake Tower Villa"
+    },
+    {
+      "id": "LF_002",
+      "family": "LF",
+      "pages": "11-13",
+      "tier": 2,
+      "tags": ["CR_TAG", "SP"],
+      "source_file": "LF.txt",
+      "description": "London Fox background, Synchromy-S.S.S.T.E.R.Y creation"
+    },
+    {
+      "id": "LF_003",
+      "family": "LF",
+      "pages": "14-17",
+      "tier": 2,
+      "tags": ["SP", "AR"],
+      "source_file": "LF.txt",
+      "description": "Chatbot parody, F.O.R.E.S.H.A.D.O.W.I.N.G function"
+    },
+    {
+      "id": "LF_004",
+      "family": "LF",
+      "pages": "18-20",
+      "tier": 2,
+      "tags": ["CR_TAG", "AR"],
+      "source_file": "LF.txt",
+      "description": "Living word horror, apocalyptic realization"
+    },
+    {
+      "id": "LF_005",
+      "family": "LF",
+      "pages": "21-24",
+      "tier": 1,
+      "tags": ["CR_TAG", "AR", "MO"],
+      "source_file": "LF.txt",
+      "description": "Vertical disintegration, chatbot whispers"
+    },
+    {
+      "id": "PR_001",
+      "family": "PR",
+      "pages": "25-27",
+      "tier": 1,
+      "tags": ["CR_TAG", "IR"],
+      "source_file": "PR.txt",
+      "description": "Pure thought, brain as amusement park"
+    },
+    {
+      "id": "PR_002",
+      "family": "PR",
+      "pages": "28",
+      "tier": 2,
+      "tags": ["CR_TAG", "AR"],
+      "source_file": "PR.txt",
+      "description": "E-class attractions, telepathy question"
+    },
+    {
+      "id": "PR_003",
+      "family": "PR",
+      "pages": "29",
+      "tier": 1,
+      "tags": ["CR_TAG", "AL", "AR"],
+      "source_file": "PR.txt",
+      "description": "Gillespie, balcony escape, next volume promise"
+    },
+    {
+      "id": "CR_001",
+      "family": "CR",
+      "pages": "30-32",
+      "tier": 1,
+      "tags": ["IC", "SP"],
+      "source_file": "CR.txt",
+      "description": "Bankruptcy petition header, Gibstory Publications"
+    },
+    {
+      "id": "CR_002",
+      "family": "CR",
+      "pages": "33-36",
+      "tier": 2,
+      "tags": ["IC", "SP"],
+      "source_file": "CR.txt",
+      "description": "Financial liabilities schedule"
+    },
+    {
+      "id": "CR_003",
+      "family": "CR",
+      "pages": "37-39",
+      "tier": 2,
+      "tags": ["IC"],
+      "source_file": "CR.txt",
+      "description": "Property assets listing"
+    },
+    {
+      "id": "CR_004",
+      "family": "CR",
+      "pages": "40-42",
+      "tier": 3,
+      "tags": ["IC", "SP"],
+      "source_file": "CR.txt",
+      "description": "Intellectual property inventory"
+    },
+    {
+      "id": "CR_005",
+      "family": "CR",
+      "pages": "43-45",
+      "tier": 2,
+      "tags": ["IC"],
+      "source_file": "CR.txt",
+      "description": "Creditor claims summary"
+    },
+    {
+      "id": "CR_006",
+      "family": "CR",
+      "pages": "46-48",
+      "tier": 3,
+      "tags": ["IC"],
+      "source_file": "CR.txt",
+      "description": "Employee contracts listing"
+    },
+    {
+      "id": "CR_007",
+      "family": "CR",
+      "pages": "49-51",
+      "tier": 2,
+      "tags": ["IC", "AL"],
+      "source_file": "CR.txt",
+      "description": "Subsidiary relationships"
+    },
+    {
+      "id": "CR_008",
+      "family": "CR",
+      "pages": "52-54",
+      "tier": 3,
+      "tags": ["IC"],
+      "source_file": "CR.txt",
+      "description": "Reorganization proposal"
+    },
+    {
+      "id": "CR_009",
+      "family": "CR",
+      "pages": "55",
+      "tier": 1,
+      "tags": ["IC", "AL"],
+      "source_file": "CR.txt",
+      "description": "Closing statement, judge signature"
+    },
+    {
+      "id": "TF_001",
+      "family": "TF",
+      "pages": "56-62",
+      "tier": 1,
+      "tags": ["CR_TAG", "MO"],
+      "source_file": "TF.txt",
+      "description": "Todd Fishbone introduction, carousel, stories"
+    },
+    {
+      "id": "TF_002a",
+      "family": "TF",
+      "pages": "63-67",
+      "tier": 3,
+      "tags": ["MO", "IR"],
+      "source_file": "TF.txt",
+      "description": "City of Brass part 1: travelers enter city"
+    },
+    {
+      "id": "TF_002b",
+      "family": "TF",
+      "pages": "68-71",
+      "tier": 3,
+      "tags": ["MO", "IR"],
+      "source_file": "TF.txt",
+      "description": "City of Brass part 2: queen's chamber discovery"
+    },
+    {
+      "id": "TF_002c",
+      "family": "TF",
+      "pages": "72-75",
+      "tier": 2,
+      "tags": ["MO", "IR"],
+      "source_file": "TF.txt",
+      "description": "City of Brass part 3: automaton awakening"
+    },
+    {
+      "id": "TF_003",
+      "family": "TF",
+      "pages": "76-77",
+      "tier": 3,
+      "tags": ["IR"],
+      "source_file": "TF.txt",
+      "description": "Story aftermath, reflection"
+    },
+    {
+      "id": "TF_004",
+      "family": "TF",
+      "pages": "78-82",
+      "tier": 1,
+      "tags": ["MO", "CR_TAG"],
+      "source_file": "TF.txt",
+      "description": "Return to carousel, theme park setting"
+    },
+    {
+      "id": "TF_005",
+      "family": "TF",
+      "pages": "83-87",
+      "tier": 2,
+      "tags": ["MO", "IR"],
+      "source_file": "TF.txt",
+      "description": "Philosophical wandering, memories"
+    },
+    {
+      "id": "TF_006",
+      "family": "TF",
+      "pages": "88-90",
+      "tier": 1,
+      "tags": ["CR_TAG", "AR", "MO"],
+      "source_file": "TF.txt",
+      "description": "Entrance Way approach, door question"
+    },
+    {
+      "id": "TA_001",
+      "family": "TA",
+      "pages": "91-93",
+      "tier": 1,
+      "tags": ["AL", "IR"],
+      "source_file": "TA.txt",
+      "description": "Recursive opening, naming problem, capitalization distinction"
+    },
+    {
+      "id": "TA_002",
+      "family": "TA",
+      "pages": "94-97",
+      "tier": 2,
+      "tags": ["AL", "IR"],
+      "source_file": "TA.txt",
+      "description": "Resolution of naming, memory loss conflict, Gibsey World setting"
+    },
+    {
+      "id": "TA_003",
+      "family": "TA",
+      "pages": "98-102",
+      "tier": 1,
+      "tags": ["AL", "IR", "SP"],
+      "source_file": "TA.txt",
+      "description": "Main Square Cinema, blank screens, platform, merchandise"
+    },
+    {
+      "id": "TA_004",
+      "family": "TA",
+      "pages": "103-105",
+      "tier": 2,
+      "tags": ["IR"],
+      "source_file": "TA.txt",
+      "description": "Amnesia catalog, lost time, absence of presence"
+    },
+    {
+      "id": "TA_005",
+      "family": "TA",
+      "pages": "106-108",
+      "tier": 3,
+      "tags": ["IR", "MO"],
+      "source_file": "TA.txt",
+      "description": "Landscape-as-self, unfolding film, Truman Show reference"
+    },
+    {
+      "id": "TA_006",
+      "family": "TA",
+      "pages": "109-111",
+      "tier": 4,
+      "tags": ["IR"],
+      "source_file": "TA.txt",
+      "description": "Grandparent's backyard, clothesline, oak tree, recent backyard, dogs, partner"
+    },
+    {
+      "id": "TA_007",
+      "family": "TA",
+      "pages": "112-113",
+      "tier": 4,
+      "tags": ["AL"],
+      "source_file": "TA.txt",
+      "description": "Bastrop kitchen table, written landscapes exercise, museum cliche"
+    },
+    {
+      "id": "TA_008",
+      "family": "TA",
+      "pages": "114-116",
+      "tier": 3,
+      "tags": ["IR"],
+      "source_file": "TA.txt",
+      "description": "Partner meeting, genetic origins, ADHD diagnosis, Texas History"
+    },
+    {
+      "id": "TA_009",
+      "family": "TA",
+      "pages": "117-118",
+      "tier": 3,
+      "tags": ["MO", "IR"],
+      "source_file": "TA.txt",
+      "description": "Game of Life, tent in backyard, father's ghost stories"
+    },
+    {
+      "id": "TA_010",
+      "family": "TA",
+      "pages": "119-120",
+      "tier": 2,
+      "tags": ["AL", "MO"],
+      "source_file": "TA.txt",
+      "description": "Voices, screens, title cards"
+    },
+    {
+      "id": "TA_011",
+      "family": "TA",
+      "pages": "121-122",
+      "tier": 2,
+      "tags": ["AL", "IR"],
+      "source_file": "TA.txt",
+      "description": "Cast members, teacher, introductions, nostalgia"
+    },
+    {
+      "id": "TA_012",
+      "family": "TA",
+      "pages": "123",
+      "tier": 1,
+      "tags": ["AL"],
+      "source_file": "TA.txt",
+      "description": "The mid-sentence break"
+    }
+  ],
+  "families": {
+    "AA": { "name": "An Author's Preface", "chunk_count": 5 },
+    "LF": { "name": "London Fox Who Vertically Disintegrates", "chunk_count": 5 },
+    "PR": { "name": "Princhetta Who Thinks Herself Alive", "chunk_count": 3 },
+    "CR": { "name": "Petition for Bankruptcy", "chunk_count": 9 },
+    "TF": { "name": "Todd Fishbone Who Waits at the Entrance Way", "chunk_count": 8 },
+    "TA": { "name": "The Author's Preface", "chunk_count": 12 }
+  },
+  "tiers": {
+    "1": { "description": "Essential narrative anchors", "chunk_count": 11 },
+    "2": { "description": "Important context", "chunk_count": 15 },
+    "3": { "description": "Supporting detail", "chunk_count": 10 },
+    "4": { "description": "Extended material", "chunk_count": 5 }
+  },
+  "tags": {
+    "AL": { "name": "Authorial Layer", "description": "Meta-narrative and authorial voice" },
+    "IC": { "name": "Institutional/Corporate", "description": "Legal, corporate, bureaucratic content" },
+    "SP": { "name": "Self-Parody", "description": "Self-referential parody elements" },
+    "CR_TAG": { "name": "Consciousness/Reality", "description": "Consciousness and reality themes" },
+    "IR": { "name": "Identity/Recursion", "description": "Identity loops and recursion" },
+    "MO": { "name": "Myth/Origin", "description": "Mythological and origin themes" },
+    "AR": { "name": "AI/Reality", "description": "AI and constructed reality themes" }
+  }
+}

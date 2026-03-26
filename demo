@@ -1,0 +1,304 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Gibsey Demo CLI
+# Usage: ./demo [command]
+# Commands: up, down, seed, test, clean
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+DATA_DIR="${SCRIPT_DIR}/data"
+CHUNKS_DIR="${DATA_DIR}/chunks"
+QDPI_DIR="${DATA_DIR}/qdpi"
+SCHEMAS_DIR="${SCRIPT_DIR}/schemas"
+
+# Colors for output
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+NC='\033[0m' # No Color
+
+log_info() { echo -e "${BLUE}[INFO]${NC} $1"; }
+log_success() { echo -e "${GREEN}[OK]${NC} $1"; }
+log_warn() { echo -e "${YELLOW}[WARN]${NC} $1"; }
+log_error() { echo -e "${RED}[ERROR]${NC} $1"; }
+
+# Check dependencies
+check_deps() {
+  local missing=()
+  command -v docker >/dev/null 2>&1 || missing+=("docker")
+  command -v python3 >/dev/null 2>&1 || missing+=("python3")
+
+  if [ ${#missing[@]} -ne 0 ]; then
+    log_error "Missing dependencies: ${missing[*]}"
+    exit 1
+  fi
+}
+
+# Start services
+cmd_up() {
+  log_info "Starting Cassandra..."
+  docker compose -f "${SCRIPT_DIR}/docker-compose.yml" up -d
+
+  log_info "Waiting for Cassandra to be ready..."
+  local retries=30
+  until docker compose exec -T cassandra cqlsh -e "DESCRIBE KEYSPACES" >/dev/null 2>&1; do
+    retries=$((retries - 1))
+    if [ $retries -le 0 ]; then
+      log_error "Cassandra failed to start"
+      exit 1
+    fi
+    sleep 2
+  done
+
+  log_success "Cassandra is ready"
+
+  # Apply schema
+  log_info "Applying Cassandra schema..."
+  docker compose exec -T cassandra cqlsh < "${SCHEMAS_DIR}/cassandra_schema.cql"
+  log_success "Schema applied"
+}
+
+# Stop services
+cmd_down() {
+  log_info "Stopping services..."
+  docker compose -f "${SCRIPT_DIR}/docker-compose.yml" down
+  log_success "Services stopped"
+}
+
+# Seed database with chunks
+cmd_seed() {
+  log_info "Seeding database with manuscript chunks..."
+
+  # Verify chunks exist
+  if [ ! -d "${CHUNKS_DIR}" ]; then
+    log_error "Chunks directory not found: ${CHUNKS_DIR}"
+    exit 1
+  fi
+
+  # Verify manifest exists
+  if [ ! -f "${CHUNKS_DIR}/manifest.json" ]; then
+    log_error "Manifest not found: ${CHUNKS_DIR}/manifest.json"
+    exit 1
+  fi
+
+  # Verify symbol map exists
+  if [ ! -f "${QDPI_DIR}/symbol_map.json" ]; then
+    log_error "Symbol map not found: ${QDPI_DIR}/symbol_map.json"
+    exit 1
+  fi
+
+  log_info "Processing chunk files..."
+
+  # Process each chunk file and generate hashes
+  python3 << 'PYTHON_SCRIPT'
+import json
+import hashlib
+import os
+import re
+from datetime import datetime
+
+CHUNKS_DIR = os.environ.get('CHUNKS_DIR', 'data/chunks')
+QDPI_DIR = os.environ.get('QDPI_DIR', 'data/qdpi')
+
+def sha256_hash(content: str) -> str:
+    return hashlib.sha256(content.encode('utf-8')).hexdigest()
+
+def parse_chunk_file(filepath: str) -> list:
+    """Parse a chunk file and extract individual chunks."""
+    chunks = []
+    with open(filepath, 'r', encoding='utf-8') as f:
+        content = f.read()
+
+    # Split by chunk headers
+    pattern = r'--- CHUNK: (\w+_\d+[a-z]?) \| Pages? ([\d\-]+) \| Tier (\d) \| Tags: ([A-Z_,\s]+) ---'
+    parts = re.split(pattern, content)
+
+    # parts[0] is empty or whitespace before first chunk
+    # then groups of 5: chunk_id, pages, tier, tags, content
+    i = 1
+    while i < len(parts):
+        if i + 4 < len(parts):
+            chunk_id = parts[i].strip()
+            pages = parts[i + 1].strip()
+            tier = int(parts[i + 2].strip())
+            tags = [t.strip() for t in parts[i + 3].split(',')]
+            chunk_content = parts[i + 4].strip()
+
+            chunks.append({
+                'chunk_id': chunk_id,
+                'pages': pages,
+                'tier': tier,
+                'tags': tags,
+                'content': chunk_content,
+                'content_hash': sha256_hash(chunk_content)
+            })
+        i += 5
+
+    return chunks
+
+def main():
+    manifest_path = os.path.join(CHUNKS_DIR, 'manifest.json')
+
+    with open(manifest_path, 'r') as f:
+        manifest = json.load(f)
+
+    print(f"Processing {manifest['total_chunks']} chunks from manifest...")
+
+    # Process each chunk file
+    chunk_files = ['AA.txt', 'LF.txt', 'PR.txt', 'CR.txt', 'TF.txt', 'TA.txt']
+    all_chunks = []
+
+    for chunk_file in chunk_files:
+        filepath = os.path.join(CHUNKS_DIR, chunk_file)
+        if os.path.exists(filepath):
+            chunks = parse_chunk_file(filepath)
+            all_chunks.extend(chunks)
+            print(f"  Parsed {len(chunks)} chunks from {chunk_file}")
+        else:
+            print(f"  Warning: {chunk_file} not found")
+
+    print(f"\nTotal chunks parsed: {len(all_chunks)}")
+
+    # Generate CQL insert statements
+    cql_statements = []
+    timestamp = datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')
+
+    for chunk in all_chunks:
+        family = chunk['chunk_id'].split('_')[0]
+        tags_cql = '{' + ', '.join(f"'{t}'" for t in chunk['tags']) + '}'
+        content_escaped = chunk['content'].replace("'", "''")
+
+        cql = f"""INSERT INTO gibsey.content_chunks (
+  chunk_id, doc_id, layer, family, pages, tier, tags,
+  content, chunk_hash, source_commit, sequence_in_doc, created_at
+) VALUES (
+  '{chunk['chunk_id']}',
+  '{family}',
+  'primary',
+  '{family}',
+  '{chunk['pages']}',
+  {chunk['tier']},
+  {tags_cql},
+  '{content_escaped}',
+  '{chunk['content_hash']}',
+  'seed',
+  0,
+  '{timestamp}'
+);"""
+        cql_statements.append(cql)
+
+    # Write CQL file for import
+    seed_cql_path = os.path.join(CHUNKS_DIR, 'seed_chunks.cql')
+    with open(seed_cql_path, 'w') as f:
+        f.write('\n\n'.join(cql_statements))
+
+    print(f"\nGenerated {len(cql_statements)} CQL statements")
+    print(f"Seed file written to: {seed_cql_path}")
+
+    # Update manifest with hashes
+    for manifest_chunk in manifest['chunks']:
+        for parsed_chunk in all_chunks:
+            if manifest_chunk['id'] == parsed_chunk['chunk_id']:
+                manifest_chunk['content_hash'] = parsed_chunk['content_hash']
+                break
+
+    # Write updated manifest
+    with open(manifest_path, 'w') as f:
+        json.dump(manifest, f, indent=2)
+
+    print(f"Updated manifest with content hashes")
+
+if __name__ == '__main__':
+    main()
+PYTHON_SCRIPT
+
+  # Import generated CQL
+  if [ -f "${CHUNKS_DIR}/seed_chunks.cql" ]; then
+    log_info "Importing chunks into Cassandra..."
+    docker compose exec -T cassandra cqlsh < "${CHUNKS_DIR}/seed_chunks.cql" || {
+      log_warn "CQL import failed - Cassandra may not be running"
+      log_info "Run './demo up' first, then './demo seed'"
+    }
+  fi
+
+  log_success "Seed complete"
+}
+
+# Run tests
+cmd_test() {
+  log_info "Running tests..."
+
+  # Verify chunks can be retrieved
+  log_info "Verifying chunk retrieval..."
+  docker compose exec -T cassandra cqlsh -e "SELECT chunk_id, tier, tags FROM gibsey.content_chunks LIMIT 5;" || {
+    log_warn "Could not query chunks - run './demo up' and './demo seed' first"
+  }
+
+  # Verify symbol map is valid JSON
+  log_info "Validating symbol map..."
+  python3 -c "import json; json.load(open('${QDPI_DIR}/symbol_map.json'))" && \
+    log_success "Symbol map is valid JSON" || \
+    log_error "Symbol map validation failed"
+
+  # Verify manifest is valid JSON
+  log_info "Validating manifest..."
+  python3 -c "import json; json.load(open('${CHUNKS_DIR}/manifest.json'))" && \
+    log_success "Manifest is valid JSON" || \
+    log_error "Manifest validation failed"
+
+  log_success "Tests complete"
+}
+
+# Clean up
+cmd_clean() {
+  log_info "Cleaning up..."
+  docker compose -f "${SCRIPT_DIR}/docker-compose.yml" down -v
+  rm -f "${CHUNKS_DIR}/seed_chunks.cql"
+  log_success "Cleanup complete"
+}
+
+# Print usage
+cmd_help() {
+  cat << EOF
+Gibsey Demo CLI
+
+Usage: ./demo [command]
+
+Commands:
+  up      Start Cassandra and apply schema
+  down    Stop services
+  seed    Parse chunks and seed database
+  test    Run validation tests
+  clean   Stop services and remove volumes
+  help    Show this help message
+
+Examples:
+  ./demo up          # Start Cassandra
+  ./demo seed        # Seed with manuscript chunks
+  ./demo test        # Verify everything works
+EOF
+}
+
+# Main
+main() {
+  check_deps
+
+  local cmd="${1:-help}"
+
+  case "$cmd" in
+    up)    cmd_up ;;
+    down)  cmd_down ;;
+    seed)  cmd_seed ;;
+    test)  cmd_test ;;
+    clean) cmd_clean ;;
+    help)  cmd_help ;;
+    *)
+      log_error "Unknown command: $cmd"
+      cmd_help
+      exit 1
+      ;;
+  esac
+}
+
+main "$@"

@@ -1,0 +1,269 @@
+{
+  "version": "0.3.0",
+  "spec_source": "QDPI_RUNTIME.md",
+  "generated": "2026-03-26",
+
+  "states": {
+    "Q": { "name": "Queue", "index": 0, "turn_value": 0 },
+    "M": { "name": "Monologue", "index": 1, "turn_value": 1 },
+    "D": { "name": "Dialogue", "index": 2, "turn_value": 2 },
+    "H": { "name": "Holologue", "index": 3, "turn_value": 3 }
+  },
+
+  "families": {
+    "AA": {
+      "index": 0,
+      "name": "An Author",
+      "role": "authorial threshold",
+      "clusters": ["AL", "IR"],
+      "transport_affinity": "medium",
+      "canon_volatility": "low",
+      "anchor_need": "low",
+      "output_affinity": { "M": "native", "D": "guarded", "H": "enabled" }
+    },
+    "LF": {
+      "index": 1,
+      "name": "London Fox",
+      "role": "executive skeptic",
+      "clusters": ["IC", "SP", "CR"],
+      "transport_affinity": "high",
+      "canon_volatility": "medium",
+      "anchor_need": "medium",
+      "output_affinity": { "M": "enabled", "D": "native", "H": "native" }
+    },
+    "GM": {
+      "index": 2,
+      "name": "Glyph Marrow",
+      "role": "haunted investigator",
+      "clusters": ["IC", "MO"],
+      "transport_affinity": "medium",
+      "canon_volatility": "medium",
+      "anchor_need": "medium",
+      "output_affinity": { "M": "native", "D": "enabled", "H": "guarded" }
+    },
+    "PB": {
+      "index": 3,
+      "name": "Phillip Bafflemint",
+      "role": "pursuing detective",
+      "clusters": ["IC"],
+      "transport_affinity": "medium",
+      "canon_volatility": "low",
+      "anchor_need": "low",
+      "output_affinity": { "M": "enabled", "D": "native", "H": "enabled" }
+    },
+    "JV": {
+      "index": 4,
+      "name": "Jacklyn Variance",
+      "role": "analyst-watcher",
+      "clusters": ["IC", "SP"],
+      "transport_affinity": "high",
+      "canon_volatility": "low",
+      "anchor_need": "low",
+      "output_affinity": { "M": "guarded", "D": "native", "H": "enabled" }
+    },
+    "OP": {
+      "index": 5,
+      "name": "Oren Progresso",
+      "role": "executive narrator",
+      "clusters": ["SP", "AL"],
+      "transport_affinity": "high",
+      "canon_volatility": "medium",
+      "anchor_need": "medium",
+      "output_affinity": { "M": "enabled", "D": "guarded", "H": "native" }
+    },
+    "ON": {
+      "index": 6,
+      "name": "Old Natalie Weissman",
+      "role": "mystical originator",
+      "clusters": ["IR", "MO"],
+      "transport_affinity": "high",
+      "canon_volatility": "high",
+      "anchor_need": "high",
+      "output_affinity": { "M": "native", "D": "guarded", "H": "native" }
+    },
+    "PR": {
+      "index": 7,
+      "name": "Princhetta",
+      "role": "conscious artifact",
+      "clusters": ["CR", "MO", "AR"],
+      "transport_affinity": "high",
+      "canon_volatility": "medium",
+      "anchor_need": "medium",
+      "output_affinity": { "M": "native", "D": "enabled", "H": "native" }
+    },
+    "CR": {
+      "index": 8,
+      "name": "Cop-E-Right",
+      "role": "litigant artifact",
+      "clusters": ["CR", "AR", "SP"],
+      "transport_affinity": "high",
+      "canon_volatility": "medium",
+      "anchor_need": "medium",
+      "output_affinity": { "M": "guarded", "D": "native", "H": "native" }
+    },
+    "NN": {
+      "index": 9,
+      "name": "New Natalie Weissman",
+      "role": "recursive clone",
+      "clusters": ["IR", "MO", "AR"],
+      "transport_affinity": "high",
+      "canon_volatility": "high",
+      "anchor_need": "high",
+      "output_affinity": { "M": "native", "D": "guarded", "H": "native" }
+    },
+    "AO": {
+      "index": 10,
+      "name": "Arieol Owlist",
+      "role": "fixer / underling",
+      "clusters": ["SP", "AR", "IR"],
+      "transport_affinity": "high",
+      "canon_volatility": "medium",
+      "anchor_need": "medium",
+      "output_affinity": { "M": "enabled", "D": "native", "H": "native" }
+    },
+    "JP": {
+      "index": 11,
+      "name": "Jack Parlance",
+      "role": "unstable agent-maker",
+      "clusters": ["IC", "SP", "MO"],
+      "transport_affinity": "high",
+      "canon_volatility": "high",
+      "anchor_need": "high",
+      "output_affinity": { "M": "enabled", "D": "guarded", "H": "native" }
+    },
+    "MV": {
+      "index": 12,
+      "name": "Manny Valentinas",
+      "role": "corpus theoretician",
+      "clusters": ["AL", "IR", "MO"],
+      "transport_affinity": "high",
+      "canon_volatility": "high",
+      "anchor_need": "high",
+      "output_affinity": { "M": "native", "D": "guarded", "H": "native" }
+    },
+    "SS": {
+      "index": 13,
+      "name": "Shamrock Stillman",
+      "role": "managerial pursuer",
+      "clusters": ["IC", "SP"],
+      "transport_affinity": "medium",
+      "canon_volatility": "medium",
+      "anchor_need": "medium",
+      "output_affinity": { "M": "guarded", "D": "native", "H": "enabled" }
+    },
+    "TF": {
+      "index": 14,
+      "name": "Todd Fishbone",
+      "role": "conspiratorial broadcaster",
+      "clusters": ["CR", "MO"],
+      "transport_affinity": "high",
+      "canon_volatility": "medium",
+      "anchor_need": "medium",
+      "output_affinity": { "M": "native", "D": "enabled", "H": "native" }
+    },
+    "TA": {
+      "index": 15,
+      "name": "The Author",
+      "role": "meta-author",
+      "clusters": ["AL", "IR", "MO"],
+      "transport_affinity": "medium",
+      "canon_volatility": "high",
+      "anchor_need": "high",
+      "output_affinity": { "M": "native", "D": "guarded", "H": "guarded" }
+    }
+  },
+
+  "family_order": ["AA", "LF", "GM", "PB", "JV", "OP", "ON", "PR", "CR", "NN", "AO", "JP", "MV", "SS", "TF", "TA"],
+
+  "mirror_pairs": [
+    ["AA", "TA"],
+    ["LF", "TF"],
+    ["GM", "SS"],
+    ["PB", "MV"],
+    ["JV", "JP"],
+    ["OP", "AO"],
+    ["ON", "NN"],
+    ["PR", "CR"]
+  ],
+
+  "complement_edges": [
+    ["AA", "MV"],
+    ["LF", "PR"],
+    ["LF", "CR"],
+    ["LF", "TF"],
+    ["GM", "JV"],
+    ["PB", "SS"],
+    ["OP", "CR"],
+    ["ON", "MV"],
+    ["NN", "PR"],
+    ["AO", "CR"],
+    ["JP", "TF"],
+    ["MV", "TF"]
+  ],
+
+  "semantic_clusters": {
+    "AL": { "name": "Authorial Loop", "description": "Meta-narrative and authorial voice" },
+    "IC": { "name": "Investigation Chain", "description": "Detective and investigative threads" },
+    "SP": { "name": "System Power", "description": "Corporate and institutional power structures" },
+    "CR": { "name": "Consciousness & Rights", "description": "AI consciousness and rights themes" },
+    "IR": { "name": "Identity & Recursion", "description": "Identity loops and recursive structures" },
+    "MO": { "name": "Media & Occult", "description": "Media theory and occult themes" },
+    "AR": { "name": "Agency & Revolt", "description": "Autonomy and resistance themes" }
+  },
+
+  "relation_classes": {
+    "S": { "name": "Self", "precedence": 6, "description": "Same family" },
+    "N": { "name": "Adjacent", "precedence": 5, "description": "Neighboring family in ring order" },
+    "R": { "name": "Mirror", "precedence": 2, "description": "Paired opposite in ring" },
+    "X": { "name": "Mirror-Adjacent", "precedence": 1, "description": "Adjacent to mirror" },
+    "B": { "name": "Bridge", "precedence": 4, "description": "Shared semantic cluster" },
+    "C": { "name": "Complement", "precedence": 3, "description": "Explicit complement edge" },
+    ".": { "name": "Remote", "precedence": 7, "description": "No structural relation" }
+  },
+
+  "routing_matrix": {
+    "description": "16x16 matrix: row=source, col=target. Values: S=self, N=adjacent, R=mirror, X=mirror-adjacent, .=remote",
+    "matrix": [
+      ["S", "N", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", "X", "R"],
+      ["N", "S", "N", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", "X", "R", "X"],
+      [".", "N", "S", "N", ".", ".", ".", ".", ".", ".", ".", ".", "X", "R", "X", "."],
+      [".", ".", "N", "S", "N", ".", ".", ".", ".", ".", ".", "X", "R", "X", ".", "."],
+      [".", ".", ".", "N", "S", "N", ".", ".", ".", ".", "X", "R", "X", ".", ".", "."],
+      [".", ".", ".", ".", "N", "S", "N", ".", ".", "X", "R", "X", ".", ".", ".", "."],
+      [".", ".", ".", ".", ".", "N", "S", "N", "X", "R", "X", ".", ".", ".", ".", "."],
+      [".", ".", ".", ".", ".", ".", "N", "S", "R", "X", ".", ".", ".", ".", ".", "."],
+      [".", ".", ".", ".", ".", ".", "X", "R", "S", "N", ".", ".", ".", ".", ".", "."],
+      [".", ".", ".", ".", ".", "X", "R", "X", "N", "S", "N", ".", ".", ".", ".", "."],
+      [".", ".", ".", ".", "X", "R", "X", ".", ".", "N", "S", "N", ".", ".", ".", "."],
+      [".", ".", ".", "X", "R", "X", ".", ".", ".", ".", "N", "S", "N", ".", ".", "."],
+      [".", ".", "X", "R", "X", ".", ".", ".", ".", ".", ".", "N", "S", "N", ".", "."],
+      [".", "X", "R", "X", ".", ".", ".", ".", ".", ".", ".", ".", "N", "S", "N", "."],
+      ["X", "R", "X", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", "N", "S", "N"],
+      ["R", "X", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", "N", "S"]
+    ]
+  },
+
+  "routing_precedence": {
+    "holologue": ["X", "R", "C", "B", "N", "S", "."],
+    "monologue_dialogue": ["S", "R", "C", "B", "N", "."]
+  },
+
+  "output_fit_levels": ["native", "enabled", "guarded", "rare"],
+
+  "transport_affinity_levels": ["low", "medium", "high"],
+
+  "volatility_levels": {
+    "low": 0,
+    "medium": 1,
+    "high": 2
+  },
+
+  "risk_bands": {
+    "LOW": { "range": [0, 2], "description": "Safe for main branch" },
+    "MED": { "range": [3, 4], "description": "Proceed with caution" },
+    "HIGH": { "range": [5, 6], "description": "Requires anchoring" },
+    "SEVERE": { "range": [7, 99], "description": "Must refuse or auto-branch on main" }
+  },
+
+  "branch_modes": ["main", "soft_canon", "branch_only", "vault_personal"]
+}
