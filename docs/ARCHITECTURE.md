@@ -41,8 +41,8 @@ Classify every artifact as one of:
 #### Sensory states (S): what Composer can observe
 
 - Edge request: `project_id`, `session_id`, `source_page_ref`/`queue_id`, `symbol_id`/`orientation`, `ask`, `options`
-- Reads from Cassandra: `queue_pages`, `queue_deps`, `content_chunks`, `ledger_state` slices (session/run/arc), optional `vault_entries`
-- Reads from Git (directly or mirrored): kernels, canon, primary, policies, schemas, QDPI map
+- Reads from Cassandra: `queue_pages`, `queue_deps`, `content_chunks`, `ledger_state` slices (session/run/arc), optional `vault_entries`, optional `agi_state` (reader's transition symbol history)
+- Reads from Git (directly or mirrored): kernels, canon, primary, policies, schemas, QDPI map, symbol definitions
 - Run-time observations: retrieval results, truncation decisions, validation outcomes, failures
 
 #### Active states (A): what Composer can do
@@ -393,6 +393,13 @@ Cassandra ledger is the source of motion. Kafka is optional later.
 
 Optional tables remain as previously described (context bundles, QDPI mirrors, stats, deltas, etc.).
 
+Additional tables introduced by §10 and §11:
+
+| Table | Purpose | Notes |
+|-------|---------|-------|
+| `agi_entries` | Autonomous Gibsey Index — per-reader transition symbol log | Append-only; keyed by `(project_id, session_id)` |
+| `agi_state` | AGI projection — current symbol sequence + reader profile | Rebuildable from `agi_entries` + session events |
+
 ---
 
 ## 9. One-Command Demo Harness and Deterministic Gates
@@ -425,6 +432,168 @@ Optional tables remain as previously described (context bundles, QDPI mirrors, s
 
 ---
 
+## 10. NU-256 Symbol System
+
+### 10.1 Symbol Alphabet
+
+The QDPI visual language is a set of geometric glyphs called **nu-256**. Each of the 16 glyph families has 16 unique symbols — one for each of the 16 ordered state-transitions in Δ₁₆ = K × K (where K = {Q, M, D, H}). With 4 visible rotations per symbol, the full alphabet contains 256 visual states.
+
+For the MVP's 6 families, the active alphabet is **96 symbols** (6 × 16).
+
+### 10.2 Transition Mapping
+
+Each symbol encodes a specific transition, not just a mode. The 16 symbols per family are:
+
+| Symbol | Transition | Meaning |
+|--------|-----------|---------|
+| 1 | Q→Q | Queue to Queue (continue reading) |
+| 2 | Q→M | Queue to Monologue (expand) |
+| 3 | Q→D | Queue to Dialogue (converse) |
+| 4 | Q→H | Queue to Holologue (cross-section) |
+| 5 | M→Q | Monologue to Queue (return to source) |
+| 6 | M→M | Monologue to Monologue (chain expansion) |
+| 7 | M→D | Monologue to Dialogue (converse from expansion) |
+| 8 | M→H | Monologue to Holologue (cross-section from expansion) |
+| 9 | D→Q | Dialogue to Queue (return to source) |
+| 10 | D→M | Dialogue to Monologue (expand from conversation) |
+| 11 | D→D | Dialogue to Dialogue (continue conversation) |
+| 12 | D→H | Dialogue to Holologue (cross-section from conversation) |
+| 13 | H→Q | Holologue to Queue (land in new section) |
+| 14 | H→M | Holologue to Monologue (expand in new section) |
+| 15 | H→D | Holologue to Dialogue (converse in new section) |
+| 16 | H→H | Holologue to Holologue (chain cross-section) |
+
+### 10.3 n/u Strand Geometry
+
+The 16 glyph families are organized into 8 twin pairs. Each pair consists of an **n-strand** family and a **u-strand** family:
+
+- **n-strand** families have a base glyph shaped like the letter **n** — a gate or arch opening downward. The glyph rotates through 0°→90°→180°→270°→0° across the four QDPI source states, returning to the n-shape after a full 360° cycle.
+- **u-strand** families have a base glyph shaped like the letter **u** — the same gate folded inside-out, like a protein inverting on itself. The u-shape is the geometric complement of its n-strand twin: the same structural form viewed from the opposite side of the threshold.
+
+The MVP twin pairs are:
+
+| n-strand | u-strand | Pair |
+|----------|----------|------|
+| AA (an author) | TA (The Author) | Frame |
+| LF (London Fox) | TF (Todd Fishbone) | AI consciousness |
+| PR (Princhetta) | CR (Cop-E-Right) | Hinge |
+
+The n/u relationship is not an abstract label — it is the visual encoding of the palindrome structure. The n-strand families are the "day side" and the u-strand families are their inside-out inversions, structurally complementary like two halves of a folded protein or two faces of Janus.
+
+### 10.4 Symbols as Compressed State Encoding
+
+The nu-256 glyphs serve multiple simultaneous functions:
+
+- **Visual marker:** The reader sees which family they're in and what transition just occurred. The glyph shape + rotation is human-readable positional information.
+- **Routing receipt:** The transition is encoded in the symbol itself. No metadata lookup is needed to know that Q→H occurred — the glyph IS that information.
+- **Context smuggler:** When the symbol's image vector is embedded alongside text vectors, including the symbol in a ContextBundle gives the model a dense geometric encoding of the reader's current position in the state machine without consuming tokens to explain it. The Composer can include the current symbol's embedding as a retrieval signal.
+- **Quantum state marker:** The same Queue page reached via M→Q produces a different symbol than the same page reached via H→Q. The glyph encodes the path, not just the destination. A page is a different experiential object depending on the transition that brought the reader there.
+- **AGI entry:** Every transition produces a symbol that is appended to the reader's Autonomous Gibsey Index (§11). The symbol sequence IS the reader's path through the state space.
+
+### 10.5 Symbol Storage
+
+The canonical symbol definitions are stored in `data/qdpi/symbol_map.json`, keyed by family ID and transition code. Each entry contains the SVG drawing data, strand type (n or u), and base rotation.
+
+The full visual reference for all 256 symbols is stored in `data/qdpi/nu-256-grid.html`.
+
+The UI applies QDPI visible rotation (0°/90°/180°/270° per source state) on top of the base strand rotation at render time.
+
+---
+
+## 11. Autonomous Gibsey Index (AGI)
+
+### 11.1 Purpose
+
+The Autonomous Gibsey Index is the **persistent, per-reader record of every state transition** a reader makes. It is distinct from the Vault and from the session ledger:
+
+- **Vault:** What the reader chose to save — personal canon, curated selections. The reader controls what goes in.
+- **Session ledger:** What happened during a session — events, receipts, projections. The system controls this.
+- **AGI:** The complete sequence of transition symbols a reader has generated across all sessions. It is append-only, never pruned, and readable by agents. It is the reader's path through the state space, written in nu-256 glyphs.
+
+The AGI is the agent's persistent memory of a specific reader. When an agent assembles context for a run, it can read the reader's AGI to understand their journey — which sections they favor, which modes they gravitate toward, whether they chain Monologues deep or bounce between Queue and Dialogue, whether they've been holologued across sections or stayed local.
+
+### 11.2 AGI Entries
+
+Each AGI entry records a single state transition:
+
+```json
+{
+  "agi_entry_id": "AGI-001",
+  "project_id": "default",
+  "session_id": "demo",
+  "glyph_family_id": "AA",
+  "transition_code": "Q_TO_M",
+  "symbol_ref": "AA_Q_TO_M",
+  "source_page_ref": { "kind": "queue", "queue_id": "Q-001" },
+  "target_page_ref": { "kind": "run", "run_id": "R-001", "output_type": "M" },
+  "run_id": "R-001",
+  "created_at": "2026-03-26T12:00:00Z",
+  "sequence_position": 1
+}
+```
+
+### 11.3 AGI as Symbol Sequence
+
+A reader's AGI is an ordered sequence of transition symbols. For example, a reader who opens an author's preface Page 1, generates a Monologue, chains another Monologue within it, returns to Page 2, and then asks the agent a Dialogue question has produced the sequence:
+
+AA:Q→M, AA:M→M, AA:M→Q, AA:Q→D
+
+This is four glyphs — four specific an-author symbols from the n-strand set. The sequence is unique to this reader's path. It is both human-readable (the glyphs are visually distinct) and machine-readable (the transition codes are structured data, and the symbol image vectors can be embedded).
+
+### 11.4 AGI vs Vault vs Ledger
+
+| Property | AGI | Vault | Session Ledger |
+|----------|-----|-------|----------------|
+| What it records | Every transition symbol | Reader-selected saves | Every system event |
+| Who controls it | Automatic (system appends on every transition) | Reader (explicit save action) | System (all events logged) |
+| Persistence | Permanent across sessions | Permanent across sessions | Per-session (rebuildable) |
+| Prunable | Never | Reader can curate | Events are append-only |
+| Agent-readable | Yes — agents read AGI to understand the reader | Yes — agents read Vault for personal canon | Yes — Composer reads ledger for session state |
+| Content | Symbol references (lightweight) | Full generated pages (heavy) | Full event payloads (heavy) |
+| Purpose | Path memory — where you've been and how you got there | Personal canon — what you chose to keep | Operational truth — what happened |
+
+### 11.5 AGI in the Composer
+
+When assembling a ContextBundle, the Composer MAY include AGI context:
+
+- **Recent AGI slice:** The last N transition symbols, giving the agent awareness of the reader's recent journey.
+- **AGI profile:** Derived summary statistics — mode distribution, family distribution, chain depth patterns, cross-section transport frequency. This is a rebuildable projection from AGI entries.
+- **Symbol embeddings:** If symbol image vectors are available, they can be included as retrieval signals alongside text chunk embeddings, smuggling positional context into the model's attention without token cost.
+
+The AGI is observational input to the Composer (sensory state), not an action surface. The Composer reads it; it does not write to it directly. AGI entries are appended as a side effect of session transition events.
+
+### 11.6 AGI Events
+
+The following session events trigger AGI entry creation:
+
+- `QUEUE_PAGE_OPENED` (records the transition that led to this page open)
+- `GENERATED_PAGE_OPENED` (records the M/D/H transition)
+
+The AGI entry is derived from the transition metadata already present in these events. No separate AGI-specific event type is required — the AGI projector reads session events and extracts transition symbols.
+
+### 11.7 AGI Projection
+
+The AGI projector reconstructs:
+
+```
+AGIState = (
+  session_id,
+  full_sequence,
+  sequence_length,
+  family_distribution,
+  mode_distribution,
+  transition_distribution,
+  recent_window,
+  chain_depth_stats,
+  cross_section_count,
+  last_stream_pos
+)
+```
+
+The AGI projection is rebuildable from session events. It is a derived view, not authoritative truth — the authoritative truth is the append-only sequence of AGI entries.
+
+---
+
 ## Appendices
 
 ### Appendix A: Glossary
@@ -434,11 +603,15 @@ Optional tables remain as previously described (context bundles, QDPI mirrors, s
 - **Attempt:** Retry index within a `run_id` (see §2.2)
 - **Uncertainty signals:** Discrete confidence levels that drive PolicySelection (see §4)
 - **Experience routing state machine:** Allowed actions and transitions by page type (see §3)
+- **nu-256:** The complete QDPI visual symbol alphabet — 16 families × 16 transitions × 4 rotations = 256 visual states (see §10)
+- **n-strand / u-strand:** The two geometric orientations of twin-pair glyph families — n-shapes open downward, u-shapes are their inside-out inversions, like complementary protein folds (see §10.3)
+- **Transition symbol:** A specific glyph encoding a state-to-state movement (e.g., Q→M, M→H) for a specific family, visually distinct and machine-embeddable (see §10.2)
+- **AGI (Autonomous Gibsey Index):** The persistent, per-reader, append-only sequence of transition symbols recording every state change across all sessions — the reader's path through the state space, readable by agents (see §11)
 
 ### Appendix B: Minimal Event Types
 
 - **Run/system:** `RUN_REQUESTED`, `RUN_STARTED`, `ROUTING_RESOLVED`, `POLICY_SELECTED`, `CONTEXT_ASSEMBLED`, `RETRIEVAL_COMPLETED`, `MODEL_CALLED`, `OUTPUT_CREATED`, `OUTPUT_VALIDATION_RECORDED`, `RUN_COMPLETED`, `FAILURE_OCCURRED`, `FALLBACK_USED`
-- **Session/experience:** `SESSION_STARTED`, `QUEUE_PAGE_OPENED`, `GENERATED_PAGE_OPENED`, `MONOLOGUE_BOND_SELECTED`, `DIALOGUE_SUBMITTED`, `HOLOLOGUE_BOND_SELECTED`, return stack + jump/return events, `VAULT_ENTRY_CREATED`
+- **Session/experience:** `SESSION_STARTED`, `QUEUE_PAGE_OPENED`, `GENERATED_PAGE_OPENED`, `MONOLOGUE_BOND_SELECTED`, `DIALOGUE_SUBMITTED`, `HOLOLOGUE_BOND_SELECTED`, return stack + jump/return events, `VAULT_ENTRY_CREATED`. Note: `QUEUE_PAGE_OPENED` and `GENERATED_PAGE_OPENED` also drive AGI entry derivation (see §11.6).
 - **Governance/canon:** `PROMOTION_PROPOSED`, `PROMOTION_APPROVED`, `CANON_REINDEXED`
 
 **Optional events:** `UNLOCK_GRANTED`, `UNCERTAINTY_ASSESSED`, `CANON_CONFLICT_DETECTED`, `CANON_CONFLICT_RESOLVED`, `BRANCH_ENTERED`, `BRANCH_EXITED`

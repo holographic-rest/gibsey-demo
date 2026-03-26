@@ -1,0 +1,1433 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>QDPI NU-256 Complete Preview</title>
+<style>
+  body { margin: 0; font-family: Inter, system-ui, sans-serif; background:#f6f7f9; }
+  header { background: #fff; padding: 16px; border-bottom: 1px solid #e5e7eb; position: sticky; top: 0; z-index: 100; }
+  header h1 { font-size: 18px; margin: 0 0 12px 0; font-weight: 600; }
+  .controls { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+  .control-group { display: flex; gap: 8px; align-items: center; }
+  .control-group label { font-size: 14px; font-weight: 500; margin-right: 8px; }
+  .controls button { 
+    padding: 6px 12px; 
+    border: 1px solid #ddd; 
+    background: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+  }
+  .controls button.active { 
+    background: #3b82f6; 
+    color: white; 
+    border-color: #3b82f6;
+  }
+  main { padding: 16px; }
+  .twin-pair { margin-bottom: 32px; border: 1px solid #e5e7eb; border-radius: 8px; background: #fff; overflow: hidden; }
+  .twin-header { padding: 12px 16px; background: #f9fafb; border-bottom: 1px solid #e5e7eb; font-weight: 600; font-size: 14px; }
+  .strands-container { padding: 16px; }
+  .strand-row { margin-bottom: 20px; }
+  .strand-row:last-child { margin-bottom: 0; }
+  .strand-label { font-size: 13px; font-weight: 500; margin-bottom: 8px; color: #374151; }
+  .modes-row { display: flex; gap: 8px; }
+  .mode-container { flex: 1; text-align: center; }
+  .mode-box { border: 1px solid #e5e7eb; border-radius: 4px; background: #fff; padding: 4px; }
+  .mode-label { font-size: 11px; color: #6b7280; margin-top: 4px; }
+  svg { width: 100%; height: auto; display: block; max-width: 80px; }
+  .symbol-svg { transition: transform 0.3s ease; transform-origin: center; }
+  .info { 
+    margin: 16px 0; 
+    padding: 12px; 
+    background: #f0f4f8; 
+    border-radius: 6px;
+    font-size: 13px;
+    color: #4b5563;
+  }
+  .hidden { display: none; }
+</style>
+</head>
+<body>
+<header>
+  <h1>QDPI NU-256 Complete Preview</h1>
+  <div class="controls">
+    <div class="control-group">
+      <label>Strand:</label>
+      <button class="strand-btn active" data-strand="both">Both</button>
+      <button class="strand-btn" data-strand="n">N Only</button>
+      <button class="strand-btn" data-strand="u">U Only</button>
+    </div>
+    <div class="control-group">
+      <label>Rotation:</label>
+      <button class="rotation-btn active" data-rotation="0">0°</button>
+      <button class="rotation-btn" data-rotation="90">90° CW</button>
+      <button class="rotation-btn" data-rotation="180">180° CW</button>
+      <button class="rotation-btn" data-rotation="270">270° CW</button>
+    </div>
+  </div>
+</header>
+<main>
+  <div class="info">
+    <strong>QDPI NU-256 Complete Symbol Set</strong><br>
+    16 characters (8 N-strand + 8 U-strand twins) × 4 modes (P/M/D/H) × 4 rotations = 256 total symbols<br>
+    <strong>N-strand:</strong> Interior gates (inward-facing) • <strong>U-strand:</strong> Outward gates + 180° base rotation (inside-out appearance)
+  </div>
+  
+  <div id="grid-container">
+    <div class="twin-pair">
+      <div class="twin-header">an-author ↔ the-author</div>
+      <div class="strands-container">
+        <div class="strand-row n-strand">
+          <div class="strand-label">N-strand: an-author</div>
+          <div class="modes-row">
+            <div class="mode-container">
+              <div class="mode-box">
+                <svg class="symbol-svg n-symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+                  <rect width="1000" height="1000" fill="#fff"/>
+                  <g class="rotatable" data-base-rotation="0">
+<rect width="1000" height="1000" fill="#fff"/><line x1="200" y1="200" x2="800" y2="200" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="200" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="200" x2="800" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="800" x2="400" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="800" x2="600" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+                  </g>
+                </svg>
+              </div>
+              <div class="mode-label">P • N • 000</div>
+            </div>
+            <div class="mode-container">
+              <div class="mode-box">
+                <svg class="symbol-svg n-symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+                  <rect width="1000" height="1000" fill="#fff"/>
+                  <g class="rotatable" data-base-rotation="0">
+<rect width="1000" height="1000" fill="#fff"/><line x1="200" y1="200" x2="800" y2="200" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="200" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="200" x2="800" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="800" x2="400" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="700" x2="400" y2="700" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="800" x2="600" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="700" x2="600" y2="700" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+                  </g>
+                </svg>
+              </div>
+              <div class="mode-label">M • N • 000</div>
+            </div>
+            <div class="mode-container">
+              <div class="mode-box">
+                <svg class="symbol-svg n-symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+                  <rect width="1000" height="1000" fill="#fff"/>
+                  <g class="rotatable" data-base-rotation="0">
+<rect width="1000" height="1000" fill="#fff"/><line x1="200" y1="200" x2="800" y2="200" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="200" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="200" x2="800" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="800" x2="400" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="700" x2="400" y2="700" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="600" x2="400" y2="600" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="800" x2="600" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="700" x2="600" y2="700" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="600" x2="600" y2="600" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+                  </g>
+                </svg>
+              </div>
+              <div class="mode-label">D • N • 000</div>
+            </div>
+            <div class="mode-container">
+              <div class="mode-box">
+                <svg class="symbol-svg n-symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+                  <rect width="1000" height="1000" fill="#fff"/>
+                  <g class="rotatable" data-base-rotation="0">
+<rect width="1000" height="1000" fill="#fff"/><line x1="200" y1="200" x2="800" y2="200" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="200" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="200" x2="800" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="800" x2="400" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="700" x2="400" y2="700" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="600" x2="400" y2="600" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="500" x2="400" y2="500" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="800" x2="600" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="700" x2="600" y2="700" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="600" x2="600" y2="600" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="500" x2="600" y2="500" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+                  </g>
+                </svg>
+              </div>
+              <div class="mode-label">H • N • 000</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="strand-row u-strand">
+          <div class="strand-label">U-strand: the-author</div>
+          <div class="modes-row">
+            <div class="mode-container">
+              <div class="mode-box">
+                <svg class="symbol-svg u-symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+                  <rect width="1000" height="1000" fill="#fff"/>
+                  <g class="rotatable" data-base-rotation="180">
+<rect width="1000" height="1000" fill="#fff"/><line x1="200" y1="200" x2="800" y2="200" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="200" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="200" x2="800" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="0" y1="800" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="800" x2="1000" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+                  </g>
+                </svg>
+              </div>
+              <div class="mode-label">P • U • 000</div>
+            </div>
+            <div class="mode-container">
+              <div class="mode-box">
+                <svg class="symbol-svg u-symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+                  <rect width="1000" height="1000" fill="#fff"/>
+                  <g class="rotatable" data-base-rotation="180">
+<rect width="1000" height="1000" fill="#fff"/><line x1="200" y1="200" x2="800" y2="200" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="200" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="200" x2="800" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="0" y1="800" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="0" y1="700" x2="200" y2="700" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="800" x2="1000" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="700" x2="1000" y2="700" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+                  </g>
+                </svg>
+              </div>
+              <div class="mode-label">M • U • 000</div>
+            </div>
+            <div class="mode-container">
+              <div class="mode-box">
+                <svg class="symbol-svg u-symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+                  <rect width="1000" height="1000" fill="#fff"/>
+                  <g class="rotatable" data-base-rotation="180">
+<rect width="1000" height="1000" fill="#fff"/><line x1="200" y1="200" x2="800" y2="200" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="200" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="200" x2="800" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="0" y1="800" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="0" y1="700" x2="200" y2="700" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="0" y1="600" x2="200" y2="600" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="800" x2="1000" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="700" x2="1000" y2="700" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="600" x2="1000" y2="600" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+                  </g>
+                </svg>
+              </div>
+              <div class="mode-label">D • U • 000</div>
+            </div>
+            <div class="mode-container">
+              <div class="mode-box">
+                <svg class="symbol-svg u-symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+                  <rect width="1000" height="1000" fill="#fff"/>
+                  <g class="rotatable" data-base-rotation="180">
+<rect width="1000" height="1000" fill="#fff"/><line x1="200" y1="200" x2="800" y2="200" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="200" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="200" x2="800" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="0" y1="800" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="0" y1="700" x2="200" y2="700" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="0" y1="600" x2="200" y2="600" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="0" y1="500" x2="200" y2="500" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="800" x2="1000" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="700" x2="1000" y2="700" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="600" x2="1000" y2="600" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="500" x2="1000" y2="500" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+                  </g>
+                </svg>
+              </div>
+              <div class="mode-label">H • U • 000</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="twin-pair">
+      <div class="twin-header">london-fox ↔ todd-fishbone</div>
+      <div class="strands-container">
+        <div class="strand-row n-strand">
+          <div class="strand-label">N-strand: london-fox</div>
+          <div class="modes-row">
+            <div class="mode-container">
+              <div class="mode-box">
+                <svg class="symbol-svg n-symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+                  <rect width="1000" height="1000" fill="#fff"/>
+                  <g class="rotatable" data-base-rotation="0">
+<rect width="1000" height="1000" fill="#fff"/><line x1="200" y1="200" x2="800" y2="200" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="200" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="200" x2="800" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="800" x2="400" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="600" x2="400" y2="600" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="800" x2="600" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="600" x2="600" y2="600" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+                  </g>
+                </svg>
+              </div>
+              <div class="mode-label">P • N • 000</div>
+            </div>
+            <div class="mode-container">
+              <div class="mode-box">
+                <svg class="symbol-svg n-symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+                  <rect width="1000" height="1000" fill="#fff"/>
+                  <g class="rotatable" data-base-rotation="0">
+<rect width="1000" height="1000" fill="#fff"/><line x1="200" y1="200" x2="800" y2="200" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="200" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="200" x2="800" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="800" x2="400" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="500" x2="400" y2="500" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="800" x2="600" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="500" x2="600" y2="500" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+                  </g>
+                </svg>
+              </div>
+              <div class="mode-label">M • N • 000</div>
+            </div>
+            <div class="mode-container">
+              <div class="mode-box">
+                <svg class="symbol-svg n-symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+                  <rect width="1000" height="1000" fill="#fff"/>
+                  <g class="rotatable" data-base-rotation="0">
+<rect width="1000" height="1000" fill="#fff"/><line x1="200" y1="200" x2="800" y2="200" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="200" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="200" x2="800" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="800" x2="400" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="600" x2="400" y2="600" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="500" x2="400" y2="500" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="800" x2="600" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="600" x2="600" y2="600" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="500" x2="600" y2="500" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+                  </g>
+                </svg>
+              </div>
+              <div class="mode-label">D • N • 000</div>
+            </div>
+            <div class="mode-container">
+              <div class="mode-box">
+                <svg class="symbol-svg n-symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+                  <rect width="1000" height="1000" fill="#fff"/>
+                  <g class="rotatable" data-base-rotation="0">
+<rect width="1000" height="1000" fill="#fff"/><line x1="200" y1="200" x2="800" y2="200" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="200" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="200" x2="800" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="800" x2="400" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="700" x2="400" y2="700" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="500" x2="400" y2="500" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="800" x2="600" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="700" x2="600" y2="700" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="500" x2="600" y2="500" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+                  </g>
+                </svg>
+              </div>
+              <div class="mode-label">H • N • 000</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="strand-row u-strand">
+          <div class="strand-label">U-strand: todd-fishbone</div>
+          <div class="modes-row">
+            <div class="mode-container">
+              <div class="mode-box">
+                <svg class="symbol-svg u-symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+                  <rect width="1000" height="1000" fill="#fff"/>
+                  <g class="rotatable" data-base-rotation="180">
+<rect width="1000" height="1000" fill="#fff"/><line x1="200" y1="200" x2="800" y2="200" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="200" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="200" x2="800" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="0" y1="800" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="0" y1="600" x2="200" y2="600" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="800" x2="1000" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="600" x2="1000" y2="600" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+                  </g>
+                </svg>
+              </div>
+              <div class="mode-label">P • U • 000</div>
+            </div>
+            <div class="mode-container">
+              <div class="mode-box">
+                <svg class="symbol-svg u-symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+                  <rect width="1000" height="1000" fill="#fff"/>
+                  <g class="rotatable" data-base-rotation="180">
+<rect width="1000" height="1000" fill="#fff"/><line x1="200" y1="200" x2="800" y2="200" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="200" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="200" x2="800" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="0" y1="800" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="0" y1="500" x2="200" y2="500" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="800" x2="1000" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="500" x2="1000" y2="500" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+                  </g>
+                </svg>
+              </div>
+              <div class="mode-label">M • U • 000</div>
+            </div>
+            <div class="mode-container">
+              <div class="mode-box">
+                <svg class="symbol-svg u-symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+                  <rect width="1000" height="1000" fill="#fff"/>
+                  <g class="rotatable" data-base-rotation="180">
+<rect width="1000" height="1000" fill="#fff"/><line x1="200" y1="200" x2="800" y2="200" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="200" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="200" x2="800" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="0" y1="800" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="0" y1="600" x2="200" y2="600" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="0" y1="500" x2="200" y2="500" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="800" x2="1000" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="600" x2="1000" y2="600" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="500" x2="1000" y2="500" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+                  </g>
+                </svg>
+              </div>
+              <div class="mode-label">D • U • 000</div>
+            </div>
+            <div class="mode-container">
+              <div class="mode-box">
+                <svg class="symbol-svg u-symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+                  <rect width="1000" height="1000" fill="#fff"/>
+                  <g class="rotatable" data-base-rotation="180">
+<rect width="1000" height="1000" fill="#fff"/><line x1="200" y1="200" x2="800" y2="200" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="200" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="200" x2="800" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="0" y1="800" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="0" y1="700" x2="200" y2="700" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="0" y1="500" x2="200" y2="500" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="800" x2="1000" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="700" x2="1000" y2="700" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="500" x2="1000" y2="500" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+                  </g>
+                </svg>
+              </div>
+              <div class="mode-label">H • U • 000</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="twin-pair">
+      <div class="twin-header">glyph-marrow ↔ shamrock-stillman</div>
+      <div class="strands-container">
+        <div class="strand-row n-strand">
+          <div class="strand-label">N-strand: glyph-marrow</div>
+          <div class="modes-row">
+            <div class="mode-container">
+              <div class="mode-box">
+                <svg class="symbol-svg n-symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+                  <rect width="1000" height="1000" fill="#fff"/>
+                  <g class="rotatable" data-base-rotation="0">
+<rect width="1000" height="1000" fill="#fff"/><line x1="200" y1="200" x2="800" y2="200" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="200" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="200" x2="800" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="800" x2="400" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="800" x2="600" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="700" x2="400" y2="700" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+                  </g>
+                </svg>
+              </div>
+              <div class="mode-label">P • N • 000</div>
+            </div>
+            <div class="mode-container">
+              <div class="mode-box">
+                <svg class="symbol-svg n-symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+                  <rect width="1000" height="1000" fill="#fff"/>
+                  <g class="rotatable" data-base-rotation="0">
+<rect width="1000" height="1000" fill="#fff"/><line x1="200" y1="200" x2="800" y2="200" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="200" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="200" x2="800" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="800" x2="400" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="800" x2="600" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="700" x2="600" y2="700" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+                  </g>
+                </svg>
+              </div>
+              <div class="mode-label">M • N • 000</div>
+            </div>
+            <div class="mode-container">
+              <div class="mode-box">
+                <svg class="symbol-svg n-symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+                  <rect width="1000" height="1000" fill="#fff"/>
+                  <g class="rotatable" data-base-rotation="0">
+<rect width="1000" height="1000" fill="#fff"/><line x1="200" y1="200" x2="800" y2="200" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="200" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="200" x2="800" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="800" x2="400" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="800" x2="600" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="600" x2="400" y2="600" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+                  </g>
+                </svg>
+              </div>
+              <div class="mode-label">D • N • 000</div>
+            </div>
+            <div class="mode-container">
+              <div class="mode-box">
+                <svg class="symbol-svg n-symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+                  <rect width="1000" height="1000" fill="#fff"/>
+                  <g class="rotatable" data-base-rotation="0">
+<rect width="1000" height="1000" fill="#fff"/><line x1="200" y1="200" x2="800" y2="200" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="200" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="200" x2="800" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="800" x2="400" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="800" x2="600" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="600" x2="600" y2="600" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+                  </g>
+                </svg>
+              </div>
+              <div class="mode-label">H • N • 000</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="strand-row u-strand">
+          <div class="strand-label">U-strand: shamrock-stillman</div>
+          <div class="modes-row">
+            <div class="mode-container">
+              <div class="mode-box">
+                <svg class="symbol-svg u-symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+                  <rect width="1000" height="1000" fill="#fff"/>
+                  <g class="rotatable" data-base-rotation="180">
+<rect width="1000" height="1000" fill="#fff"/><line x1="200" y1="200" x2="800" y2="200" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="200" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="200" x2="800" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="0" y1="800" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="800" x2="1000" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="0" y1="700" x2="200" y2="700" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+                  </g>
+                </svg>
+              </div>
+              <div class="mode-label">P • U • 000</div>
+            </div>
+            <div class="mode-container">
+              <div class="mode-box">
+                <svg class="symbol-svg u-symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+                  <rect width="1000" height="1000" fill="#fff"/>
+                  <g class="rotatable" data-base-rotation="180">
+<rect width="1000" height="1000" fill="#fff"/><line x1="200" y1="200" x2="800" y2="200" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="200" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="200" x2="800" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="0" y1="800" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="800" x2="1000" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="700" x2="1000" y2="700" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+                  </g>
+                </svg>
+              </div>
+              <div class="mode-label">M • U • 000</div>
+            </div>
+            <div class="mode-container">
+              <div class="mode-box">
+                <svg class="symbol-svg u-symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+                  <rect width="1000" height="1000" fill="#fff"/>
+                  <g class="rotatable" data-base-rotation="180">
+<rect width="1000" height="1000" fill="#fff"/><line x1="200" y1="200" x2="800" y2="200" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="200" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="200" x2="800" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="0" y1="800" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="800" x2="1000" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="0" y1="600" x2="200" y2="600" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+                  </g>
+                </svg>
+              </div>
+              <div class="mode-label">D • U • 000</div>
+            </div>
+            <div class="mode-container">
+              <div class="mode-box">
+                <svg class="symbol-svg u-symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+                  <rect width="1000" height="1000" fill="#fff"/>
+                  <g class="rotatable" data-base-rotation="180">
+<rect width="1000" height="1000" fill="#fff"/><line x1="200" y1="200" x2="800" y2="200" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="200" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="200" x2="800" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="0" y1="800" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="800" x2="1000" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="600" x2="1000" y2="600" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+                  </g>
+                </svg>
+              </div>
+              <div class="mode-label">H • U • 000</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="twin-pair">
+      <div class="twin-header">phillip-bafflemint ↔ manny-valentinas</div>
+      <div class="strands-container">
+        <div class="strand-row n-strand">
+          <div class="strand-label">N-strand: phillip-bafflemint</div>
+          <div class="modes-row">
+            <div class="mode-container">
+              <div class="mode-box">
+                <svg class="symbol-svg n-symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+                  <rect width="1000" height="1000" fill="#fff"/>
+                  <g class="rotatable" data-base-rotation="0">
+<rect width="1000" height="1000" fill="#fff"/><line x1="200" y1="200" x2="800" y2="200" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="200" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="200" x2="800" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="800" x2="400" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="800" x2="600" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="500" x2="400" y2="500" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+                  </g>
+                </svg>
+              </div>
+              <div class="mode-label">P • N • 000</div>
+            </div>
+            <div class="mode-container">
+              <div class="mode-box">
+                <svg class="symbol-svg n-symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+                  <rect width="1000" height="1000" fill="#fff"/>
+                  <g class="rotatable" data-base-rotation="0">
+<rect width="1000" height="1000" fill="#fff"/><line x1="200" y1="200" x2="800" y2="200" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="200" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="200" x2="800" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="800" x2="400" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="800" x2="600" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="500" x2="600" y2="500" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+                  </g>
+                </svg>
+              </div>
+              <div class="mode-label">M • N • 000</div>
+            </div>
+            <div class="mode-container">
+              <div class="mode-box">
+                <svg class="symbol-svg n-symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+                  <rect width="1000" height="1000" fill="#fff"/>
+                  <g class="rotatable" data-base-rotation="0">
+<rect width="1000" height="1000" fill="#fff"/><line x1="200" y1="200" x2="800" y2="200" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="200" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="200" x2="800" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="800" x2="400" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="800" x2="600" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="600" x2="400" y2="600" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="500" x2="600" y2="500" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+                  </g>
+                </svg>
+              </div>
+              <div class="mode-label">D • N • 000</div>
+            </div>
+            <div class="mode-container">
+              <div class="mode-box">
+                <svg class="symbol-svg n-symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+                  <rect width="1000" height="1000" fill="#fff"/>
+                  <g class="rotatable" data-base-rotation="0">
+<rect width="1000" height="1000" fill="#fff"/><line x1="200" y1="200" x2="800" y2="200" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="200" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="200" x2="800" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="800" x2="400" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="800" x2="600" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="600" x2="600" y2="600" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="500" x2="400" y2="500" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+                  </g>
+                </svg>
+              </div>
+              <div class="mode-label">H • N • 000</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="strand-row u-strand">
+          <div class="strand-label">U-strand: manny-valentinas</div>
+          <div class="modes-row">
+            <div class="mode-container">
+              <div class="mode-box">
+                <svg class="symbol-svg u-symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+                  <rect width="1000" height="1000" fill="#fff"/>
+                  <g class="rotatable" data-base-rotation="180">
+<rect width="1000" height="1000" fill="#fff"/><line x1="200" y1="200" x2="800" y2="200" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="200" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="200" x2="800" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="0" y1="800" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="800" x2="1000" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="0" y1="500" x2="200" y2="500" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+                  </g>
+                </svg>
+              </div>
+              <div class="mode-label">P • U • 000</div>
+            </div>
+            <div class="mode-container">
+              <div class="mode-box">
+                <svg class="symbol-svg u-symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+                  <rect width="1000" height="1000" fill="#fff"/>
+                  <g class="rotatable" data-base-rotation="180">
+<rect width="1000" height="1000" fill="#fff"/><line x1="200" y1="200" x2="800" y2="200" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="200" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="200" x2="800" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="0" y1="800" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="800" x2="1000" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="500" x2="1000" y2="500" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+                  </g>
+                </svg>
+              </div>
+              <div class="mode-label">M • U • 000</div>
+            </div>
+            <div class="mode-container">
+              <div class="mode-box">
+                <svg class="symbol-svg u-symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+                  <rect width="1000" height="1000" fill="#fff"/>
+                  <g class="rotatable" data-base-rotation="180">
+<rect width="1000" height="1000" fill="#fff"/><line x1="200" y1="200" x2="800" y2="200" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="200" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="200" x2="800" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="0" y1="800" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="800" x2="1000" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="0" y1="600" x2="200" y2="600" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="500" x2="1000" y2="500" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+                  </g>
+                </svg>
+              </div>
+              <div class="mode-label">D • U • 000</div>
+            </div>
+            <div class="mode-container">
+              <div class="mode-box">
+                <svg class="symbol-svg u-symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+                  <rect width="1000" height="1000" fill="#fff"/>
+                  <g class="rotatable" data-base-rotation="180">
+<rect width="1000" height="1000" fill="#fff"/><line x1="200" y1="200" x2="800" y2="200" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="200" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="200" x2="800" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="0" y1="800" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="800" x2="1000" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="600" x2="1000" y2="600" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="0" y1="500" x2="200" y2="500" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+                  </g>
+                </svg>
+              </div>
+              <div class="mode-label">H • U • 000</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="twin-pair">
+      <div class="twin-header">jacklyn-variance ↔ jack-parlance</div>
+      <div class="strands-container">
+        <div class="strand-row n-strand">
+          <div class="strand-label">N-strand: jacklyn-variance</div>
+          <div class="modes-row">
+            <div class="mode-container">
+              <div class="mode-box">
+                <svg class="symbol-svg n-symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+                  <rect width="1000" height="1000" fill="#fff"/>
+                  <g class="rotatable" data-base-rotation="0">
+<rect width="1000" height="1000" fill="#fff"/><line x1="200" y1="200" x2="800" y2="200" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="200" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="200" x2="800" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="800" x2="400" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="800" x2="600" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="700" x2="400" y2="700" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="700" x2="600" y2="700" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="500" x2="400" y2="500" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+                  </g>
+                </svg>
+              </div>
+              <div class="mode-label">P • N • 000</div>
+            </div>
+            <div class="mode-container">
+              <div class="mode-box">
+                <svg class="symbol-svg n-symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+                  <rect width="1000" height="1000" fill="#fff"/>
+                  <g class="rotatable" data-base-rotation="0">
+<rect width="1000" height="1000" fill="#fff"/><line x1="200" y1="200" x2="800" y2="200" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="200" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="200" x2="800" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="800" x2="400" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="800" x2="600" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="700" x2="400" y2="700" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="700" x2="600" y2="700" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="500" x2="600" y2="500" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+                  </g>
+                </svg>
+              </div>
+              <div class="mode-label">M • N • 000</div>
+            </div>
+            <div class="mode-container">
+              <div class="mode-box">
+                <svg class="symbol-svg n-symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+                  <rect width="1000" height="1000" fill="#fff"/>
+                  <g class="rotatable" data-base-rotation="0">
+<rect width="1000" height="1000" fill="#fff"/><line x1="200" y1="200" x2="800" y2="200" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="200" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="200" x2="800" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="800" x2="400" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="800" x2="600" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="700" x2="400" y2="700" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="600" x2="400" y2="600" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="600" x2="600" y2="600" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+                  </g>
+                </svg>
+              </div>
+              <div class="mode-label">D • N • 000</div>
+            </div>
+            <div class="mode-container">
+              <div class="mode-box">
+                <svg class="symbol-svg n-symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+                  <rect width="1000" height="1000" fill="#fff"/>
+                  <g class="rotatable" data-base-rotation="0">
+<rect width="1000" height="1000" fill="#fff"/><line x1="200" y1="200" x2="800" y2="200" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="200" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="200" x2="800" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="800" x2="400" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="800" x2="600" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="700" x2="600" y2="700" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="600" x2="400" y2="600" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="600" x2="600" y2="600" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+                  </g>
+                </svg>
+              </div>
+              <div class="mode-label">H • N • 000</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="strand-row u-strand">
+          <div class="strand-label">U-strand: jack-parlance</div>
+          <div class="modes-row">
+            <div class="mode-container">
+              <div class="mode-box">
+                <svg class="symbol-svg u-symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+                  <rect width="1000" height="1000" fill="#fff"/>
+                  <g class="rotatable" data-base-rotation="180">
+<rect width="1000" height="1000" fill="#fff"/><line x1="200" y1="200" x2="800" y2="200" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="200" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="200" x2="800" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="0" y1="800" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="800" x2="1000" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="0" y1="700" x2="200" y2="700" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="700" x2="1000" y2="700" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="0" y1="500" x2="200" y2="500" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+                  </g>
+                </svg>
+              </div>
+              <div class="mode-label">P • U • 000</div>
+            </div>
+            <div class="mode-container">
+              <div class="mode-box">
+                <svg class="symbol-svg u-symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+                  <rect width="1000" height="1000" fill="#fff"/>
+                  <g class="rotatable" data-base-rotation="180">
+<rect width="1000" height="1000" fill="#fff"/><line x1="200" y1="200" x2="800" y2="200" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="200" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="200" x2="800" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="0" y1="800" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="800" x2="1000" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="0" y1="700" x2="200" y2="700" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="700" x2="1000" y2="700" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="500" x2="1000" y2="500" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+                  </g>
+                </svg>
+              </div>
+              <div class="mode-label">M • U • 000</div>
+            </div>
+            <div class="mode-container">
+              <div class="mode-box">
+                <svg class="symbol-svg u-symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+                  <rect width="1000" height="1000" fill="#fff"/>
+                  <g class="rotatable" data-base-rotation="180">
+<rect width="1000" height="1000" fill="#fff"/><line x1="200" y1="200" x2="800" y2="200" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="200" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="200" x2="800" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="0" y1="800" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="800" x2="1000" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="0" y1="700" x2="200" y2="700" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="0" y1="600" x2="200" y2="600" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="600" x2="1000" y2="600" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+                  </g>
+                </svg>
+              </div>
+              <div class="mode-label">D • U • 000</div>
+            </div>
+            <div class="mode-container">
+              <div class="mode-box">
+                <svg class="symbol-svg u-symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+                  <rect width="1000" height="1000" fill="#fff"/>
+                  <g class="rotatable" data-base-rotation="180">
+<rect width="1000" height="1000" fill="#fff"/><line x1="200" y1="200" x2="800" y2="200" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="200" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="200" x2="800" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="0" y1="800" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="800" x2="1000" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="700" x2="1000" y2="700" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="0" y1="600" x2="200" y2="600" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="600" x2="1000" y2="600" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+                  </g>
+                </svg>
+              </div>
+              <div class="mode-label">H • U • 000</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="twin-pair">
+      <div class="twin-header">oren-progresso ↔ arieol-owlist</div>
+      <div class="strands-container">
+        <div class="strand-row n-strand">
+          <div class="strand-label">N-strand: oren-progresso</div>
+          <div class="modes-row">
+            <div class="mode-container">
+              <div class="mode-box">
+                <svg class="symbol-svg n-symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+                  <rect width="1000" height="1000" fill="#fff"/>
+                  <g class="rotatable" data-base-rotation="0">
+<rect width="1000" height="1000" fill="#fff"/><line x1="200" y1="200" x2="800" y2="200" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="200" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="200" x2="800" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="800" x2="400" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="800" x2="600" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="700" x2="600" y2="700" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="600" x2="400" y2="600" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="600" x2="600" y2="600" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="500" x2="400" y2="500" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+                  </g>
+                </svg>
+              </div>
+              <div class="mode-label">P • N • 000</div>
+            </div>
+            <div class="mode-container">
+              <div class="mode-box">
+                <svg class="symbol-svg n-symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+                  <rect width="1000" height="1000" fill="#fff"/>
+                  <g class="rotatable" data-base-rotation="0">
+<rect width="1000" height="1000" fill="#fff"/><line x1="200" y1="200" x2="800" y2="200" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="200" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="200" x2="800" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="800" x2="400" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="800" x2="600" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="700" x2="400" y2="700" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="600" x2="400" y2="600" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="600" x2="600" y2="600" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="500" x2="600" y2="500" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+                  </g>
+                </svg>
+              </div>
+              <div class="mode-label">M • N • 000</div>
+            </div>
+            <div class="mode-container">
+              <div class="mode-box">
+                <svg class="symbol-svg n-symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+                  <rect width="1000" height="1000" fill="#fff"/>
+                  <g class="rotatable" data-base-rotation="0">
+<rect width="1000" height="1000" fill="#fff"/><line x1="200" y1="200" x2="800" y2="200" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="200" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="200" x2="800" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="800" x2="400" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="800" x2="600" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="700" x2="400" y2="700" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="600" x2="400" y2="600" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="600" x2="600" y2="600" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="500" x2="400" y2="500" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="500" x2="600" y2="500" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+                  </g>
+                </svg>
+              </div>
+              <div class="mode-label">D • N • 000</div>
+            </div>
+            <div class="mode-container">
+              <div class="mode-box">
+                <svg class="symbol-svg n-symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+                  <rect width="1000" height="1000" fill="#fff"/>
+                  <g class="rotatable" data-base-rotation="0">
+<rect width="1000" height="1000" fill="#fff"/><line x1="200" y1="200" x2="800" y2="200" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="200" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="200" x2="800" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="800" x2="400" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="800" x2="600" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="700" x2="600" y2="700" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="600" x2="400" y2="600" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="600" x2="600" y2="600" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="500" x2="400" y2="500" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="500" x2="600" y2="500" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+                  </g>
+                </svg>
+              </div>
+              <div class="mode-label">H • N • 000</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="strand-row u-strand">
+          <div class="strand-label">U-strand: arieol-owlist</div>
+          <div class="modes-row">
+            <div class="mode-container">
+              <div class="mode-box">
+                <svg class="symbol-svg u-symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+                  <rect width="1000" height="1000" fill="#fff"/>
+                  <g class="rotatable" data-base-rotation="180">
+<rect width="1000" height="1000" fill="#fff"/><line x1="200" y1="200" x2="800" y2="200" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="200" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="200" x2="800" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="0" y1="800" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="800" x2="1000" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="700" x2="1000" y2="700" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="0" y1="600" x2="200" y2="600" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="600" x2="1000" y2="600" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="0" y1="500" x2="200" y2="500" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+                  </g>
+                </svg>
+              </div>
+              <div class="mode-label">P • U • 000</div>
+            </div>
+            <div class="mode-container">
+              <div class="mode-box">
+                <svg class="symbol-svg u-symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+                  <rect width="1000" height="1000" fill="#fff"/>
+                  <g class="rotatable" data-base-rotation="180">
+<rect width="1000" height="1000" fill="#fff"/><line x1="200" y1="200" x2="800" y2="200" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="200" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="200" x2="800" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="0" y1="800" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="800" x2="1000" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="0" y1="700" x2="200" y2="700" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="0" y1="600" x2="200" y2="600" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="600" x2="1000" y2="600" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="500" x2="1000" y2="500" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+                  </g>
+                </svg>
+              </div>
+              <div class="mode-label">M • U • 000</div>
+            </div>
+            <div class="mode-container">
+              <div class="mode-box">
+                <svg class="symbol-svg u-symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+                  <rect width="1000" height="1000" fill="#fff"/>
+                  <g class="rotatable" data-base-rotation="180">
+<rect width="1000" height="1000" fill="#fff"/><line x1="200" y1="200" x2="800" y2="200" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="200" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="200" x2="800" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="0" y1="800" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="800" x2="1000" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="0" y1="700" x2="200" y2="700" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="0" y1="600" x2="200" y2="600" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="600" x2="1000" y2="600" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="0" y1="500" x2="200" y2="500" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="500" x2="1000" y2="500" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+                  </g>
+                </svg>
+              </div>
+              <div class="mode-label">D • U • 000</div>
+            </div>
+            <div class="mode-container">
+              <div class="mode-box">
+                <svg class="symbol-svg u-symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+                  <rect width="1000" height="1000" fill="#fff"/>
+                  <g class="rotatable" data-base-rotation="180">
+<rect width="1000" height="1000" fill="#fff"/><line x1="200" y1="200" x2="800" y2="200" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="200" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="200" x2="800" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="0" y1="800" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="800" x2="1000" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="700" x2="1000" y2="700" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="0" y1="600" x2="200" y2="600" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="600" x2="1000" y2="600" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="0" y1="500" x2="200" y2="500" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="500" x2="1000" y2="500" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+                  </g>
+                </svg>
+              </div>
+              <div class="mode-label">H • U • 000</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="twin-pair">
+      <div class="twin-header">old-natalie-weissman ↔ new-natalie-weissman</div>
+      <div class="strands-container">
+        <div class="strand-row n-strand">
+          <div class="strand-label">N-strand: old-natalie-weissman</div>
+          <div class="modes-row">
+            <div class="mode-container">
+              <div class="mode-box">
+                <svg class="symbol-svg n-symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+                  <rect width="1000" height="1000" fill="#fff"/>
+                  <g class="rotatable" data-base-rotation="0">
+<rect width="1000" height="1000" fill="#fff"/><line x1="200" y1="200" x2="800" y2="200" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="200" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="200" x2="800" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="800" x2="400" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="800" x2="600" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="700" x2="400" y2="700" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="700" x2="600" y2="700" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="600" x2="600" y2="600" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="500" x2="400" y2="500" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="500" x2="600" y2="500" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+                  </g>
+                </svg>
+              </div>
+              <div class="mode-label">P • N • 000</div>
+            </div>
+            <div class="mode-container">
+              <div class="mode-box">
+                <svg class="symbol-svg n-symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+                  <rect width="1000" height="1000" fill="#fff"/>
+                  <g class="rotatable" data-base-rotation="0">
+<rect width="1000" height="1000" fill="#fff"/><line x1="200" y1="200" x2="800" y2="200" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="200" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="200" x2="800" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="800" x2="400" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="800" x2="600" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="700" x2="400" y2="700" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="700" x2="600" y2="700" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="600" x2="400" y2="600" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="500" x2="400" y2="500" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="500" x2="600" y2="500" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+                  </g>
+                </svg>
+              </div>
+              <div class="mode-label">M • N • 000</div>
+            </div>
+            <div class="mode-container">
+              <div class="mode-box">
+                <svg class="symbol-svg n-symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+                  <rect width="1000" height="1000" fill="#fff"/>
+                  <g class="rotatable" data-base-rotation="0">
+<rect width="1000" height="1000" fill="#fff"/><line x1="200" y1="200" x2="800" y2="200" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="200" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="200" x2="800" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="800" x2="400" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="800" x2="600" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="700" x2="400" y2="700" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="700" x2="600" y2="700" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="600" x2="400" y2="600" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="600" x2="600" y2="600" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="500" x2="600" y2="500" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+                  </g>
+                </svg>
+              </div>
+              <div class="mode-label">D • N • 000</div>
+            </div>
+            <div class="mode-container">
+              <div class="mode-box">
+                <svg class="symbol-svg n-symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+                  <rect width="1000" height="1000" fill="#fff"/>
+                  <g class="rotatable" data-base-rotation="0">
+<rect width="1000" height="1000" fill="#fff"/><line x1="200" y1="200" x2="800" y2="200" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="200" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="200" x2="800" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="800" x2="400" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="800" x2="600" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="700" x2="400" y2="700" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="700" x2="600" y2="700" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="600" x2="400" y2="600" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="600" x2="600" y2="600" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="500" x2="400" y2="500" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+                  </g>
+                </svg>
+              </div>
+              <div class="mode-label">H • N • 000</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="strand-row u-strand">
+          <div class="strand-label">U-strand: new-natalie-weissman</div>
+          <div class="modes-row">
+            <div class="mode-container">
+              <div class="mode-box">
+                <svg class="symbol-svg u-symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+                  <rect width="1000" height="1000" fill="#fff"/>
+                  <g class="rotatable" data-base-rotation="180">
+<rect width="1000" height="1000" fill="#fff"/><line x1="200" y1="200" x2="800" y2="200" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="200" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="200" x2="800" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="0" y1="800" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="800" x2="1000" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="0" y1="700" x2="200" y2="700" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="700" x2="1000" y2="700" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="600" x2="1000" y2="600" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="0" y1="500" x2="200" y2="500" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="500" x2="1000" y2="500" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+                  </g>
+                </svg>
+              </div>
+              <div class="mode-label">P • U • 000</div>
+            </div>
+            <div class="mode-container">
+              <div class="mode-box">
+                <svg class="symbol-svg u-symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+                  <rect width="1000" height="1000" fill="#fff"/>
+                  <g class="rotatable" data-base-rotation="180">
+<rect width="1000" height="1000" fill="#fff"/><line x1="200" y1="200" x2="800" y2="200" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="200" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="200" x2="800" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="0" y1="800" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="800" x2="1000" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="0" y1="700" x2="200" y2="700" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="700" x2="1000" y2="700" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="0" y1="600" x2="200" y2="600" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="0" y1="500" x2="200" y2="500" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="500" x2="1000" y2="500" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+                  </g>
+                </svg>
+              </div>
+              <div class="mode-label">M • U • 000</div>
+            </div>
+            <div class="mode-container">
+              <div class="mode-box">
+                <svg class="symbol-svg u-symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+                  <rect width="1000" height="1000" fill="#fff"/>
+                  <g class="rotatable" data-base-rotation="180">
+<rect width="1000" height="1000" fill="#fff"/><line x1="200" y1="200" x2="800" y2="200" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="200" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="200" x2="800" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="0" y1="800" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="800" x2="1000" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="0" y1="700" x2="200" y2="700" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="700" x2="1000" y2="700" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="0" y1="600" x2="200" y2="600" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="600" x2="1000" y2="600" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="500" x2="1000" y2="500" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+                  </g>
+                </svg>
+              </div>
+              <div class="mode-label">D • U • 000</div>
+            </div>
+            <div class="mode-container">
+              <div class="mode-box">
+                <svg class="symbol-svg u-symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+                  <rect width="1000" height="1000" fill="#fff"/>
+                  <g class="rotatable" data-base-rotation="180">
+<rect width="1000" height="1000" fill="#fff"/><line x1="200" y1="200" x2="800" y2="200" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="200" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="200" x2="800" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="0" y1="800" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="800" x2="1000" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="0" y1="700" x2="200" y2="700" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="700" x2="1000" y2="700" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="0" y1="600" x2="200" y2="600" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="600" x2="1000" y2="600" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="0" y1="500" x2="200" y2="500" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+                  </g>
+                </svg>
+              </div>
+              <div class="mode-label">H • U • 000</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="twin-pair">
+      <div class="twin-header">princhetta ↔ cop-e-right</div>
+      <div class="strands-container">
+        <div class="strand-row n-strand">
+          <div class="strand-label">N-strand: princhetta</div>
+          <div class="modes-row">
+            <div class="mode-container">
+              <div class="mode-box">
+                <svg class="symbol-svg n-symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+                  <rect width="1000" height="1000" fill="#fff"/>
+                  <g class="rotatable" data-base-rotation="0">
+<rect width="1000" height="1000" fill="#fff"/><line x1="200" y1="200" x2="800" y2="200" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="200" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="200" x2="800" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="800" x2="400" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="800" x2="600" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="700" x2="600" y2="700" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="600" x2="400" y2="600" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="600" x2="600" y2="600" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="500" x2="600" y2="500" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+                  </g>
+                </svg>
+              </div>
+              <div class="mode-label">P • N • 000</div>
+            </div>
+            <div class="mode-container">
+              <div class="mode-box">
+                <svg class="symbol-svg n-symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+                  <rect width="1000" height="1000" fill="#fff"/>
+                  <g class="rotatable" data-base-rotation="0">
+<rect width="1000" height="1000" fill="#fff"/><line x1="200" y1="200" x2="800" y2="200" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="200" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="200" x2="800" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="800" x2="400" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="800" x2="600" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="700" x2="400" y2="700" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="600" x2="400" y2="600" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="600" x2="600" y2="600" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="500" x2="400" y2="500" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+                  </g>
+                </svg>
+              </div>
+              <div class="mode-label">M • N • 000</div>
+            </div>
+            <div class="mode-container">
+              <div class="mode-box">
+                <svg class="symbol-svg n-symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+                  <rect width="1000" height="1000" fill="#fff"/>
+                  <g class="rotatable" data-base-rotation="0">
+<rect width="1000" height="1000" fill="#fff"/><line x1="200" y1="200" x2="800" y2="200" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="200" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="200" x2="800" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="800" x2="400" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="800" x2="600" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="700" x2="400" y2="700" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="700" x2="600" y2="700" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="600" x2="400" y2="600" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+                  </g>
+                </svg>
+              </div>
+              <div class="mode-label">D • N • 000</div>
+            </div>
+            <div class="mode-container">
+              <div class="mode-box">
+                <svg class="symbol-svg n-symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+                  <rect width="1000" height="1000" fill="#fff"/>
+                  <g class="rotatable" data-base-rotation="0">
+<rect width="1000" height="1000" fill="#fff"/><line x1="200" y1="200" x2="800" y2="200" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="200" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="200" x2="800" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="800" x2="400" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="800" x2="600" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="700" x2="400" y2="700" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="700" x2="600" y2="700" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="600" x2="600" y2="600" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+                  </g>
+                </svg>
+              </div>
+              <div class="mode-label">H • N • 000</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="strand-row u-strand">
+          <div class="strand-label">U-strand: cop-e-right</div>
+          <div class="modes-row">
+            <div class="mode-container">
+              <div class="mode-box">
+                <svg class="symbol-svg u-symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+                  <rect width="1000" height="1000" fill="#fff"/>
+                  <g class="rotatable" data-base-rotation="180">
+<rect width="1000" height="1000" fill="#fff"/><line x1="200" y1="200" x2="800" y2="200" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="200" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="200" x2="800" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="0" y1="800" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="800" x2="1000" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="700" x2="1000" y2="700" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="0" y1="600" x2="200" y2="600" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="600" x2="1000" y2="600" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="500" x2="1000" y2="500" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+                  </g>
+                </svg>
+              </div>
+              <div class="mode-label">P • U • 000</div>
+            </div>
+            <div class="mode-container">
+              <div class="mode-box">
+                <svg class="symbol-svg u-symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+                  <rect width="1000" height="1000" fill="#fff"/>
+                  <g class="rotatable" data-base-rotation="180">
+<rect width="1000" height="1000" fill="#fff"/><line x1="200" y1="200" x2="800" y2="200" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="200" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="200" x2="800" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="0" y1="800" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="800" x2="1000" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="0" y1="700" x2="200" y2="700" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="0" y1="600" x2="200" y2="600" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="600" x2="1000" y2="600" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="0" y1="500" x2="200" y2="500" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+                  </g>
+                </svg>
+              </div>
+              <div class="mode-label">M • U • 000</div>
+            </div>
+            <div class="mode-container">
+              <div class="mode-box">
+                <svg class="symbol-svg u-symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+                  <rect width="1000" height="1000" fill="#fff"/>
+                  <g class="rotatable" data-base-rotation="180">
+<rect width="1000" height="1000" fill="#fff"/><line x1="200" y1="200" x2="800" y2="200" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="200" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="200" x2="800" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="0" y1="800" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="800" x2="1000" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="0" y1="700" x2="200" y2="700" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="700" x2="1000" y2="700" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="0" y1="600" x2="200" y2="600" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+                  </g>
+                </svg>
+              </div>
+              <div class="mode-label">D • U • 000</div>
+            </div>
+            <div class="mode-container">
+              <div class="mode-box">
+                <svg class="symbol-svg u-symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+                  <rect width="1000" height="1000" fill="#fff"/>
+                  <g class="rotatable" data-base-rotation="180">
+<rect width="1000" height="1000" fill="#fff"/><line x1="200" y1="200" x2="800" y2="200" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="200" y1="200" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="200" x2="800" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="0" y1="800" x2="200" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="800" x2="1000" y2="800" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="0" y1="700" x2="200" y2="700" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="700" x2="1000" y2="700" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+    <line x1="800" y1="600" x2="1000" y2="600" stroke="#000" stroke-width="60" stroke-linecap="square"/>
+                  </g>
+                </svg>
+              </div>
+              <div class="mode-label">H • U • 000</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const strandButtons = document.querySelectorAll('.strand-btn');
+  const rotationButtons = document.querySelectorAll('.rotation-btn');
+  
+  // Initialize U symbols with 180° base rotation
+  const uRotatables = document.querySelectorAll('.u-strand .rotatable');
+  uRotatables.forEach(g => {
+    g.setAttribute('transform', 'rotate(180 500 500)');
+  });
+  
+  // Strand toggle functionality
+  strandButtons.forEach(btn => {
+    btn.addEventListener('click', function() {
+      strandButtons.forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+      
+      const strand = this.dataset.strand;
+      const nStrands = document.querySelectorAll('.n-strand');
+      const uStrands = document.querySelectorAll('.u-strand');
+      
+      if (strand === 'both') {
+        nStrands.forEach(s => s.classList.remove('hidden'));
+        uStrands.forEach(s => s.classList.remove('hidden'));
+      } else if (strand === 'n') {
+        nStrands.forEach(s => s.classList.remove('hidden'));
+        uStrands.forEach(s => s.classList.add('hidden'));
+      } else if (strand === 'u') {
+        nStrands.forEach(s => s.classList.add('hidden'));
+        uStrands.forEach(s => s.classList.remove('hidden'));
+      }
+    });
+  });
+  
+  // Rotation functionality (accounts for U-strand 180° base rotation)
+  rotationButtons.forEach(btn => {
+    btn.addEventListener('click', function() {
+      rotationButtons.forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+      
+      const additionalRotation = parseInt(this.dataset.rotation);
+      
+      // Update all mode labels
+      const modeLabels = document.querySelectorAll('.mode-label');
+      modeLabels.forEach(label => {
+        const parts = label.textContent.split(' • ');
+        if (parts.length === 3) {
+          parts[2] = additionalRotation.toString().padStart(3, '0');
+          label.textContent = parts.join(' • ');
+        }
+      });
+      
+      // Apply rotation to all symbols
+      const rotatables = document.querySelectorAll('.rotatable');
+      rotatables.forEach(g => {
+        const baseRotation = parseInt(g.dataset.baseRotation || '0');
+        const totalRotation = (baseRotation + additionalRotation) % 360;
+        
+        if (totalRotation === 0) {
+          g.setAttribute('transform', '');
+        } else {
+          g.setAttribute('transform', 'rotate(' + totalRotation + ' 500 500)');
+        }
+      });
+    });
+  });
+});
+</script>
+</body>
+</html>
